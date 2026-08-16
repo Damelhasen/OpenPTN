@@ -74,7 +74,7 @@ The London Model Aircraft Club has donated to us:
 - Video Module and Camera 
 
  **RTL-SDR**
- ![enter image description here](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqYLQN92OELQLA6reoNl8UNNT4IwKZpOta_qQ26OcQ3OOYH2l5nd8isBA&s=10)
+ ![enter image description here]([![Lion-Wang-profile-picture-1566954273.jpg](https://i.postimg.cc/527Mg3C5/Lion-Wang-profile-picture-1566954273.jpg)](https://postimg.cc/21ZJ8nT3))
  
 The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
 
