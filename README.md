@@ -56,6 +56,8 @@ Radio surveying is used for:
 
 
 ![lion-wang-profile-picture-1566954273.avif](https://forum.banana-pi.org/uploads/default/original/2X/1/1d90fddb316c32eb2c963be1b20743344c33b68f.png)
+
+
 The Banana Pi Team has graciously donated their Banana Pi M2,Pro LCD and LED displays, and many other electrical components that will act as the processing unit for our SDR signals 
 
  **The London Model Aircraft Club**
@@ -73,7 +75,7 @@ The London Model Aircraft Club has donated to us:
 - Video Module and Camera 
 
   **RTL-SDR**
- ![enter image description here](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqYLQN92OELQLA6reoNl8UNNT4IwKZpOta_qQ26OcQ3OOYH2l5nd8isBA&s=10)
+ ![enter image description here](https://pandwarf.com/wp/wp-content/uploads/2018/01/RTL-SDR-logo.jpg)
  
 The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
 
@@ -87,9 +89,8 @@ The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
 
 **Airspy**
 
-![enter image description here](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLI7Eyxev5wiLiAwJBPq9fM8So9JXWJsbgolaeQ-21A&s=10)
+![enter image description here](https://pileupdx.com/wp-content/uploads/2026/03/AirspyLogo.png)
 
 The Airspy team has provided us with an Airspy mini dongle 
 
 
-s
