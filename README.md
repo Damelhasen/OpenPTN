@@ -75,6 +75,8 @@ The London Model Aircraft Club has donated to us:
 - Video Module and Camera 
 
   **RTL-SDR**
+
+  
  ![enter image description here](https://pandwarf.com/wp/wp-content/uploads/2018/01/RTL-SDR-logo.jpg)
  
 The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
@@ -89,7 +91,7 @@ The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
 
 **Airspy**
 
-![enter image description here](https://pileupdx.com/wp-content/uploads/2026/03/AirspyLogo.png)
+![enter image description here](https://moonrakeronline.com/media//amasty/shopby/option_images/airspy_logo9.png)
 
 The Airspy team has provided us with an Airspy mini dongle 
 
