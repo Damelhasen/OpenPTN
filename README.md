@@ -56,6 +56,7 @@ Radio surveying is used for:
 <p align = "center">
     <img src = https://lmac.ca/2016/wp-content/uploads/2015/12/cropped-LMAC-Logo-45-degrees-outline-wh.png" width ="250">
 </p>
+
 The London Model Aircraft Club has donated to us:
 
 -    Carbon Fibre Airframe
