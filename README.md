@@ -55,7 +55,7 @@ Radio surveying is used for:
  **Banana Pi Team**
 
 
-[![[![Lion-Wang-profile-picture-1566954273.jpg](https://i.postimg.cc/527Mg3C5/Lion-Wang-profile-picture-1566954273.jpg)](https://postimg.cc/21ZJ8nT3))](https://postimg.cc/yWmw0hzx) 
+[Lion-Wang-profile-picture-1566954273.jpg](https://postimg.cc/z3HTQpfX)
 
 The Banana Pi Team has graciously donated their Banana Pi M2,Pro LCD and LED displays, and many other electrical components that will act as the processing unit for our SDR signals 
 
@@ -73,8 +73,8 @@ The London Model Aircraft Club has donated to us:
 -  Radio Module
 - Video Module and Camera 
 
- **RTL-SDR**
- ![enter image description here]([![Lion-Wang-profile-picture-1566954273.jpg](https://i.postimg.cc/527Mg3C5/Lion-Wang-profile-picture-1566954273.jpg)](https://postimg.cc/21ZJ8nT3))
+  **RTL-SDR**
+ ![enter image description here](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqYLQN92OELQLA6reoNl8UNNT4IwKZpOta_qQ26OcQ3OOYH2l5nd8isBA&s=10)
  
 The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
 
