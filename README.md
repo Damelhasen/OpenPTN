@@ -55,8 +55,7 @@ Radio surveying is used for:
  **Banana Pi Team**
 
 
-[Lion-Wang-profile-picture-1566954273.jpg](https://postimg.cc/z3HTQpfX)
-
+![lion-wang-profile-picture-1566954273.avif](https://user24225.na.imgto.link/public/20260816/lion-wang-profile-picture-1566954273.avif)
 The Banana Pi Team has graciously donated their Banana Pi M2,Pro LCD and LED displays, and many other electrical components that will act as the processing unit for our SDR signals 
 
  **The London Model Aircraft Club**
