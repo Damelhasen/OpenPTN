@@ -81,8 +81,7 @@ The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
 -   an SMA extension cable
 
 
-**Airspy**
-![enter image description here](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLI7Eyxev5wiLiAwJBPq9fM8So9JXWJsbgolaeQ-21A&s=10)
+**Airspy**![enter image description here](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLI7Eyxev5wiLiAwJBPq9fM8So9JXWJsbgolaeQ-21A&s=10)
 The Airspy team has provided us with an Airspy mini dongle 
 
 
