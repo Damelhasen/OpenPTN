@@ -1,6 +1,6 @@
 """Author : Johan Sheby
    Date : 23/06/2025
-   Project : Multipurpose SDR CLI Toolkit
+   Project : SDR SCANNER FOR DRONE 
 """
 ######IMPORTS#####
 import os
