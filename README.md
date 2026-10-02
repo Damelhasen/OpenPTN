@@ -96,3 +96,5 @@ The RTL-SDR team has provided us with the RTL-SDR Starter Kit, which includes:
 The Airspy team has provided us with an Airspy mini dongle 
 
 
+**AI USE **
+Used to write Firmware and Copilot autofill**
