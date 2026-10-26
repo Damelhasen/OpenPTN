@@ -56,3 +56,17 @@ def get_mavlink_data(master,timeout=1):
         "alt": msg.alt / 1e3,
         "speed": msg.vel / 100,
     }
+def dashboard(Radio_Db, mavlink_data, freq, samples):
+    """
+    Function to display the dashboard with radio and MAVLink data.
+    """
+    clear_terminal()
+    print("""                                                 
+  ▄▄▄▄   ▄▄       ▄▄            ▄▄▄▄▄    ▄▄▄▄▄▄▄ 
+▄██▀▀██▄ ██       ██          ▄███████▄ █████▀▀▀ 
+███  ███ ██ ████▄ ████▄  ▀▀█▄ ███   ███  ▀████▄  
+███▀▀███ ██ ██ ██ ██ ██ ▄█▀██ ███▄▄▄███    ▀████ 
+███  ███ ██ ████▀ ██ ██ ▀█▄██  ▀█████▀  ███████▀ 
+            ██                                   
+            ▀▀                                   """)
+    print(f"Radio Signal Strength: {Radio_Db:.2f} dB IIIIIIIIII \nFrequency: {freq:.2f} MHz\n GPS Data: {mavlink_data}\nSamples Collected: {len(samples)}")
