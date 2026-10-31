@@ -10,6 +10,9 @@ from rtlsdr import RtlSdr as sdr
 import numpy as np
 import time
 from pymavlink import mavutil
+import folium 
+from folium.plugins import HeatMap
+import pandas as pd
 
 ###INIT###
 sdr = sdr()
@@ -57,10 +60,10 @@ def get_mavlink_data(master,timeout=1):
         "alt": msg.alt / 1e3,
         "speed": msg.vel / 100,
     }
+    global armed
+    armed = bool(master.motors_armed())
 
-import folium 
-from folium.plugins import HeatMap
-import pandas as pd
+
 
 def create_map (map_file:str) :
     datafile = pd.read_csv(map_file)
@@ -105,12 +108,14 @@ def dashboard(Radio_Db, mavlink_data, freq, samples):
 def main():
     """Main function to run the AlphaOS dashboard."""
     master = mavutil.mavlink_connection(MAVLINK_PORT, baud=115200)
-    while True:
-        freq = 433.92  
-        samples = listen_freq(sdr, freq)
+    master.wait_heartbeat()
+
+    while armed == True:
+        freq_1 = float(input("Enter frequency 1 in MHz: ")) 
+        samples = listen_freq(sdr, freq_1)
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
         mavlink_data = get_mavlink_data(master)
-        dashboard(Radio_Db, mavlink_data, freq, samples)
-        
+        dashboard(Radio_Db, mavlink_data, freq_1, samples)
+
 if __name__ == "__main__":
     main()
