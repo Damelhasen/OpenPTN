@@ -3,6 +3,7 @@
    Project :  AlphaOS
 """
 ## Importing the required libraries##
+from doctest import master
 import os
 from datetime import datetime
 
@@ -60,9 +61,18 @@ def get_mavlink_data(master,timeout=1):
         "alt": msg.alt / 1e3,
         "speed": msg.vel / 100,
     }
-    
 
+def set_armed(master, should_arm: bool) -> None:
+    """
+    Request the motors to be armed or disarmed.
+    """
+    if master.motors_armed() == should_arm:
+        return
 
+    if should_arm:
+        master.arducopter_arm()
+    else:
+        master.arducopter_disarm()
 
 def create_map (map_file:str) :
     datafile = pd.read_csv(map_file)
