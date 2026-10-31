@@ -3,3 +3,4 @@ numpy
 pymavlink
 folium==0.16.0
 branca==0.6.0
+pandas==2.0.3

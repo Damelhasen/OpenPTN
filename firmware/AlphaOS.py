@@ -7,17 +7,13 @@ import os
 from datetime import datetime
 
 from rtlsdr import RtlSdr as sdr
-
 import numpy as np
-import serial
-import struct
 import time
-
 from pymavlink import mavutil
 
 ###INIT###
 sdr = sdr()
-serial_port = serial.Serial('/dev/matek_fc', 115200, timeout=0.1)
+MAVLINK_PORT = os.getenv("MAVLINK_PORT", "COM9" if os.name == "nt" else "/dev/matek_fc")
 ###Functions###
 def clear_terminal():
     """Clears the terminal screen."""
@@ -48,6 +44,7 @@ def listen_freq(sdr_device, freq: float):
 def get_mavlink_data(master,timeout=1):
     """
     Function  to read MAVLink from FC serial port """
+    global msg
     msg = master.recv_match(type='GPS_RAW_INT', blocking=True, timeout=timeout)
     if msg is None:
         return None
@@ -73,16 +70,19 @@ def dashboard(Radio_Db, mavlink_data, freq, samples):
 ███  ███ ██ ████▀ ██ ██ ▀█▄██  ▀█████▀  ███████▀ 
             ██                                   
             ▀▀                                   """)
-    print(f"Radio Signal Strength: {Radio_Db:.2f} dB IIIIIIIIII \nFrequency: {freq:.2f} MHz\n GPS Data: {mavlink_data}\nSamples Collected: {len(samples)}")
+    print(f"Radio Signal Strength: {Radio_Db:.2f} dB IIIIIIIIII \nFrequency: {freq:.2f} MHz\n GPS Data: {mavlink_data}, Sat Vis : {msg.satellites_visible}\nSamples Collected: {len(samples)}")
     time.sleep(0.5)  # Pause for half a second to allow the user to read the output
-    clear_terminal()
+    
 
 def main():
     """Main function to run the AlphaOS dashboard."""
-    master = mavutil.mavlink_connection('/dev/matek_fc', baud=115200)
+    master = mavutil.mavlink_connection(MAVLINK_PORT, baud=115200)
     while True:
-        freq = 433.92  # Example frequency in MHz
+        freq = 433.92  
         samples = listen_freq(sdr, freq)
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
         mavlink_data = get_mavlink_data(master)
         dashboard(Radio_Db, mavlink_data, freq, samples)
+        
+if __name__ == "__main__":
+    main()
