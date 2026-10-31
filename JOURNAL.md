@@ -1,0 +1,1 @@
+Date : 2026-10-26; Worked on the Alpha OS. Rewrote a bunch of initialising code in Python by hand. Started working on the Alpha OS dashboard and figured out how to interface with the flight control already. 

@@ -5,10 +5,14 @@
 ## Importing the required libraries##
 import os
 from datetime import datetime
-try: from rtlsdr import Rtlsdr as sdr 
-except ImportError: print("RTL-SDR not installed")
+
+from rtlsdr import RtlSdr as sdr
+
 import numpy as np
-import serial , struct , time 
+import serial
+import struct
+import time
+
 from pymavlink import mavutil
 
 ###INIT###
@@ -70,3 +74,15 @@ def dashboard(Radio_Db, mavlink_data, freq, samples):
             ██                                   
             ▀▀                                   """)
     print(f"Radio Signal Strength: {Radio_Db:.2f} dB IIIIIIIIII \nFrequency: {freq:.2f} MHz\n GPS Data: {mavlink_data}\nSamples Collected: {len(samples)}")
+    time.sleep(0.5)  # Pause for half a second to allow the user to read the output
+    clear_terminal()
+
+def main():
+    """Main function to run the AlphaOS dashboard."""
+    master = mavutil.mavlink_connection('/dev/matek_fc', baud=115200)
+    while True:
+        freq = 433.92  # Example frequency in MHz
+        samples = listen_freq(sdr, freq)
+        Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
+        mavlink_data = get_mavlink_data(master)
+        dashboard(Radio_Db, mavlink_data, freq, samples)
