@@ -97,7 +97,7 @@ def create_map (map_file:str) :
     visual_map.save("heatmap.html")
 
 
-def dashboard(Radio_Db, mavlink_data, freq, samples):
+def dashboard(Radio_Db, mavlink_data, freq, armed):
     """
     Function to display the dashboard with radio and MAVLink data.
     """
@@ -110,7 +110,19 @@ def dashboard(Radio_Db, mavlink_data, freq, samples):
 ███  ███ ██ ████▀ ██ ██ ▀█▄██  ▀█████▀  ███████▀ 
             ██                                   
             ▀▀                                   """)
-    print(f"Radio Signal Strength: {Radio_Db:.2f} dB IIIIIIIIII \nFrequency: {freq:.2f} MHz\n GPS Data: {mavlink_data}, Sat Vis : {msg.satellites_visible}\nSamples Collected: {len(samples)}")
+    print(f"Radio strength: {Radio_Db:.2f} dB\nFrequency: {freq:.2f} MHz")
+    print(f"Motors: {'ARMED' if armed else 'DISARMED'}")
+    if mavlink_data is None:
+        print("Navigation data: unavailable")
+    else:
+        print(
+            f"GPS valid: {mavlink_data['valid']}\n"
+            f"Satellites: {mavlink_data['sats_visible']}\n"
+            f"Latitude: {mavlink_data['lat']:.7f}\n"
+            f"Longitude: {mavlink_data['lon']:.7f}\n"
+            f"Altitude: {mavlink_data['alt']:.1f} m\n"
+            f"Speed: {mavlink_data['speed']:.2f} m/s"
+        )
     time.sleep(0.5)  # Pause for half a second to allow the user to read the output
     
 
@@ -118,15 +130,14 @@ def main():
     """Main function to run the AlphaOS dashboard."""
     master = mavutil.mavlink_connection(MAVLINK_PORT, baud=115200)
     master.wait_heartbeat()
-    with open("log.csv", mode= "w"):
+    with open("log.csv", mode= "w") as log:
         log.write("long, lat, intensity\n")
 
-    while master.motors_armed() == True:
-        freq_1 = float(input("Enter frequency 1 in MHz: ")) 
+    freq_1 = float(input("Enter frequency 1 in MHz: "))
+    while True:
         samples = listen_freq(sdr, freq_1)
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
         mavlink_data = get_mavlink_data(master)
-        dashboard(Radio_Db, mavlink_data, freq_1, samples)
-
+        dashboard(Radio_Db, mavlink_data, freq_1, master.motors_armed())
 if __name__ == "__main__":
     main()
