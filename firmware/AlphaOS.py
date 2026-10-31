@@ -109,6 +109,8 @@ def main():
     """Main function to run the AlphaOS dashboard."""
     master = mavutil.mavlink_connection(MAVLINK_PORT, baud=115200)
     master.wait_heartbeat()
+    with open("log.csv", mode= "w"):
+        log.write("long, lat, intensity")
 
     while armed == True:
         freq_1 = float(input("Enter frequency 1 in MHz: ")) 
@@ -116,6 +118,8 @@ def main():
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
         mavlink_data = get_mavlink_data(master)
         dashboard(Radio_Db, mavlink_data, freq_1, samples)
+        with open("log.csv", mode= "a") as log: # append each value to the file for heatmap
+            log.write(f"{msg.lon}, {msg.lat}, {msg.vel}") # writes: longitude, latitude, intensity
 
 if __name__ == "__main__":
     main()
