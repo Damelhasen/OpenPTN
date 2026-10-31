@@ -98,4 +98,4 @@ The Airspy team has provided us with an Airspy mini dongle
 
 
 **AI USE **
-Used to write Firmware and Copilot autofill**
+ All code is primarily handwritten. AI was only used to troubleshoot driver issues and used in the form of copilot smart suggestions.**
