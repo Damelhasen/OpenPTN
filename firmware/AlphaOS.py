@@ -130,10 +130,13 @@ def main():
     """Main function to run the AlphaOS dashboard."""
     master = mavutil.mavlink_connection(MAVLINK_PORT, baud=115200)
     master.wait_heartbeat()
+    set_armed(master, False)  # Ensure motors are disarmed at startup
     with open("log.csv", mode= "w") as log:
         log.write("long, lat, intensity\n")
+        
 
     freq_1 = float(input("Enter frequency 1 in MHz: "))
+    set_armed(master, True)  # Arm the motors after getting the frequency input 
     while True:
         samples = listen_freq(sdr, freq_1)
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
