@@ -60,8 +60,7 @@ def get_mavlink_data(master,timeout=1):
         "alt": msg.alt / 1e3,
         "speed": msg.vel / 100,
     }
-    global armed
-    armed = bool(master.motors_armed())
+    
 
 
 
@@ -110,12 +109,12 @@ def main():
     master = mavutil.mavlink_connection(MAVLINK_PORT, baud=115200)
     master.wait_heartbeat()
 
-    while armed == True:
+    while master.motors_armed() == True:
         freq_1 = float(input("Enter frequency 1 in MHz: ")) 
         samples = listen_freq(sdr, freq_1)
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
         mavlink_data = get_mavlink_data(master)
         dashboard(Radio_Db, mavlink_data, freq_1, samples)
-
+    
 if __name__ == "__main__":
     main()
