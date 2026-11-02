@@ -15,8 +15,10 @@ from folium.plugins import HeatMap
 import pandas as pd
 
 ###INIT###
-sdr = sdr()
-MAVLINK_PORT = os.getenv("MAVLINK_PORT", "COM9" if os.name == "nt" else "/dev/matek_fc")
+MAVLINK_PORT = os.getenv(
+    "MAVLINK_PORT",
+    "COM9" if os.name == "nt" else "/dev/ttyACM0"
+)
 ###Functions###
 def clear_terminal():
     """Clears the terminal screen."""
@@ -60,8 +62,6 @@ def get_mavlink_data(master,timeout=1):
         "alt": msg.alt / 1e3,
         "speed": msg.vel / 100,
     }
-    global armed
-    armed = bool(master.motors_armed())
 
 
 
@@ -101,7 +101,8 @@ def dashboard(Radio_Db, mavlink_data, freq, samples):
 ███  ███ ██ ████▀ ██ ██ ▀█▄██  ▀█████▀  ███████▀ 
             ██                                   
             ▀▀                                   """)
-    print(f"Radio Signal Strength: {Radio_Db:.2f} dB IIIIIIIIII \nFrequency: {freq:.2f} MHz\n GPS Data: {mavlink_data}, Sat Vis : {msg.satellites_visible}\nSamples Collected: {len(samples)}")
+    satellites = mavlink_data["sats_visible"] if mavlink_data else "unavailable"
+    print(f"Radio Signal Strength: {Radio_Db:.2f} dB\nFrequency: {freq:.2f} MHz\nGPS Data: {mavlink_data or 'unavailable'}\nSatellites: {satellites}\nSamples Collected: {len(samples)}")
     time.sleep(0.5)  # Pause for half a second to allow the user to read the output
     
 
@@ -109,17 +110,18 @@ def main():
     """Main function to run the AlphaOS dashboard."""
     master = mavutil.mavlink_connection(MAVLINK_PORT, baud=115200)
     master.wait_heartbeat()
-    with open("log.csv", mode= "w"):
-        log.write("long, lat, intensity\n")
-
-    while armed == True:
+    with open("log.csv", mode="w", newline="") as log:
+        log.write("lat,long,intensity\n")
+    sdr_device = sdr()
+    while master.motors_armed():
         freq_1 = float(input("Enter frequency 1 in MHz: ")) 
-        samples = listen_freq(sdr, freq_1)
+        samples = listen_freq(sdr_device, freq_1)
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
         mavlink_data = get_mavlink_data(master)
         dashboard(Radio_Db, mavlink_data, freq_1, samples)
-        with open("log.csv", mode= "a") as log: # append each value to the file for heatmap
-            log.write(f"{msg.lon}, {msg.lat}, {msg.vel}\n") # writes: longitude, latitude, intensity
+        if mavlink_data and mavlink_data["valid"]:
+            with open("log.csv", mode="a", newline="") as log:
+                log.write(f"{mavlink_data['lat']},{mavlink_data['lon']},{Radio_Db}\n")
 
 if __name__ == "__main__":
     main()
