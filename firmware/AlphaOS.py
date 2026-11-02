@@ -113,7 +113,7 @@ def main():
     with open("log.csv", mode="w", newline="") as log:
         log.write("lat,long,intensity\n")
     sdr_device = sdr()
-    while master.motors_armed():
+    while True master.motors_armed():
         freq_1 = float(input("Enter frequency 1 in MHz: ")) 
         samples = listen_freq(sdr_device, freq_1)
         Radio_Db = 10 * np.log10(np.mean(np.abs(samples)**2))  # Calculate signal strength in dB
