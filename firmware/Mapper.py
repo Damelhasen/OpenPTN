@@ -24,5 +24,5 @@ def create_map (map_file:str) :
 
     visual_map.save("heatmap.html")
 
-create_map(r"C:\Drone\OpenPTN\firmware\test.csv")
+create_map("log.csv")
 print("Running.....")
